@@ -1,0 +1,32 @@
+{
+  "name": "@kier73/gmem-agent",
+  "version": "0.1.0",
+  "description": "Generative Memory Agent SDK — O(1) synthetic memory for any AI agent framework",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/examples/basic-induction.ts",
+    "demo:session": "tsx src/examples/session-memory.ts",
+    "demo:search": "tsx src/examples/semantic-search.ts",
+    "test": "tsx src/examples/basic-induction.ts"
+  },
+  "keywords": ["generative-memory", "gmem", "agent", "ai", "memory", "manifold", "zero-ram"],
+  "author": "Kier73",
+  "license": "MIT",
+  "dependencies": {
+    "koffi": "^2.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.7.0"
+  }
+}
