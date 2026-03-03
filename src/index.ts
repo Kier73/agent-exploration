@@ -17,3 +17,6 @@ export {
 
 // Agents
 export { GMemAgent, type GMemAgentOptions } from './agents/memory-agent.js';
+
+// Adapters
+export { OpenClawAdapter, type OpenClawAdapterOptions, type OpenClawSearchResult } from './adapters/openclaw.js';
