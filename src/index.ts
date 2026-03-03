@@ -17,6 +17,8 @@ export {
 
 // Agents
 export { GMemAgent, type GMemAgentOptions } from './agents/memory-agent.js';
+export { Dreamer, type AnchorGraphEdge } from './agents/dreamer.js';
+
 
 // Adapters
 export { OpenClawAdapter, type OpenClawAdapterOptions, type OpenClawSearchResult } from './adapters/openclaw.js';

@@ -16,9 +16,17 @@
     "dev": "tsx src/examples/basic-induction.ts",
     "demo:session": "tsx src/examples/session-memory.ts",
     "demo:search": "tsx src/examples/semantic-search.ts",
-    "test": "tsx src/examples/basic-induction.ts"
+    "test": "node --import tsx --test src/tests/**/*.test.ts"
   },
-  "keywords": ["generative-memory", "gmem", "agent", "ai", "memory", "manifold", "zero-ram"],
+  "keywords": [
+    "generative-memory",
+    "gmem",
+    "agent",
+    "ai",
+    "memory",
+    "manifold",
+    "zero-ram"
+  ],
   "author": "Kier73",
   "license": "MIT",
   "dependencies": {

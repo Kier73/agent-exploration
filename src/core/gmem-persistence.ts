@@ -57,10 +57,22 @@ export class GMemPersistence {
     }
 
     /** 
-     * Calculate the number of write records in an AOF.
-     * Each record is 16 bytes (8 bytes addr + 8 bytes value).
+     * Replay the AOF file into the context to reconstruct state.
+     * Each record is 16 bytes: 8 bytes for addr (uint64), 8 bytes for value (f64).
      */
-    recordCount(name: string): number {
-        return Math.floor(this.size(name) / 16);
+    replay(ctx: GMemContext, name: string): number {
+        const p = this.aofPath(name);
+        if (!fs.existsSync(p)) return 0;
+
+        const buffer = fs.readFileSync(p);
+        let count = 0;
+        for (let i = 0; i < buffer.length; i += 16) {
+            if (i + 16 > buffer.length) break;
+            const addr = buffer.readBigUInt64LE(i);
+            const value = buffer.readDoubleLE(i + 8);
+            ctx.write(addr, value);
+            count++;
+        }
+        return count;
     }
 }

@@ -2,8 +2,6 @@
 
 **Generative Memory Agent SDK** — $O(1)$ synthetic memory for any AI agent framework.
 
-> _"The manifold remembers everything. The RAM stores nothing."_
-
 ## What is Generative Memory?
 
 Traditional agent memory stores every piece of context physically (RAM, SQLite, vector DBs). Generative Memory replaces this with a **mathematical manifold** — a $2^{64}$ coordinate address space where every value is *synthesized deterministically* from a seed.
@@ -38,9 +36,9 @@ console.log(results);
 agent.close();
 ```
 
-## Spectral Search Engine (from GeoHDC)
+## Spectral Search Engine
 
-The SDK includes a **zero-embedding semantic search engine** ported from GeoHDC:
+The SDK includes a **zero-embedding semantic search engine** that leverages mathematical structures to find contextual similarity natively on the manifold:
 
 | Feature | Function | Method |
 |---|---|---|
@@ -55,7 +53,7 @@ const a = spectralFingerprint('Heavy rain expected this weekend');
 const b = spectralFingerprint('Rainy weather forecast');
 const c = spectralFingerprint('Rust programming language');
 
-console.log(combinedSimilarity(a, b)); // 0.72 (high — same topic!)
+console.log(combinedSimilarity(a, b)); // 0.72 (high — same topic)
 console.log(combinedSimilarity(a, c)); // 0.66 (low — different)
 ```
 
@@ -80,22 +78,20 @@ console.log(combinedSimilarity(a, c)); // 0.66 (low — different)
 └──────────────────────────────────────┘
 ```
 
-## Adapters
+## Advanced Capabilities
 
-### OpenClaw
-```typescript
-import { OpenClawAdapter } from '@kier73/gmem-agent/adapters/openclaw';
-const adapter = new OpenClawAdapter({ seed: 42, agentId: 'my-agent' });
-adapter.inductSession('session-key', 'conversation content');
-const results = adapter.searchSessions('weather query');
-```
+- **Dream Consolidation**: Agents can run background "dream" cycles to discover associative links between memories.
+- **Adapters**: Includes utility adapters for seamless integration into existing agent architectures (e.g., OpenClaw).
 
-## Examples
+## Examples & Tests
+
+Run the built-in demonstrations and test suites:
 
 ```bash
 npm run dev              # Basic induction
 npm run demo:session     # Session memory with recall
 npm run demo:search      # Semantic search (HDC + Koopman)
+npm test                 # Run the test suite
 ```
 
 ## Rust Core Modules

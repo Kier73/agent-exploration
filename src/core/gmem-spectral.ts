@@ -87,19 +87,21 @@ export function hdcCombine(a: HDCSignature, b: HDCSignature): HDCSignature {
  * Score ∈ [0, 1] where 1 = identical signatures.
  */
 export function hdcSimilarity(a: HDCSignature, b: HDCSignature): number {
-    let matchScore = 0;
-
-    for (let k = 0; k < PRIMES_16.length; k++) {
-        const diff = Math.abs(a.residues[k] - b.residues[k]);
-        const maxDiff = PRIMES_16[k] / 2;
-        // Circular distance on the modular ring
-        const circDist = Math.min(diff, PRIMES_16[k] - diff);
-        // Normalize to [0, 1] where 0 = identical
-        const channelSim = 1.0 - (circDist / maxDiff);
-        matchScore += channelSim;
+    // Structural similarity based on residue bit-flow.
+    // We compare how many "prime channels" have the same parity or 
+    // relative magnitude.
+    let alignment = 0;
+    for (let i = 0; i < 16; i++) {
+        const parA = a.residues[i] % 2;
+        const parB = b.residues[i] % 2;
+        if (parA === parB) alignment += 0.5;
+        if (a.residues[i] === b.residues[i]) alignment += 0.5;
     }
 
-    return matchScore / PRIMES_16.length;
+    const structuralSim = alignment / 16;
+    const lengthRatio = Math.min(a.length, b.length) / Math.max(a.length, b.length);
+
+    return structuralSim * 0.8 + lengthRatio * 0.2;
 }
 
 // --- Koopman Spectral Law ---
