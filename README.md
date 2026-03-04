@@ -1,4 +1,4 @@
-# @kier73/gmem-agent
+# gmem-agent
 
 **Generative Memory Agent SDK** — $O(1)$ synthetic memory for any AI agent framework.
 
